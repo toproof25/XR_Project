@@ -10,13 +10,7 @@ public class UIPageControll : MonoBehaviour
 
     void Start()
     {
-        OnMainScreen();
-    }
-
-    
-    void Update()
-    {
-        
+        OnOptionScreen();
     }
 
 
