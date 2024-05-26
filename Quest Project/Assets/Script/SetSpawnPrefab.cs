@@ -10,13 +10,24 @@ using UnityEngine.UI;
 public class SetSpawnPrefab : MonoBehaviour
 {
 
-    public GameObject copyParent;
-    public GameObject copyToggle;
+    public GameObject bigScrollCopyParent;
+    public GameObject bigScrollCopyToggle;
+
+    public GameObject smallScrollCopyParent;
+    public GameObject smallScrollCopyToggle;
+
+    public GameObject etcScrollCopyParent;
+    public GameObject etcScrollCopyToggle;
+
     public GameObject simplePrefabSpawnerObject;
 
     private SimplePrefabSpawner simplePrefabSpawner;
 
-    public List<GameObject> prefabs = new List<GameObject>(); // 프리팹들
+    public List<GameObject> prefabsBig = new List<GameObject>(); // 프리팹들
+    public List<GameObject> prefabsSmall = new List<GameObject>(); // 프리팹들
+    public List<GameObject> prefabsEtc = new List<GameObject>(); // 프리팹들
+
+
     private List<GameObject> toggles; // 토글즈
 
     private bool controllerMode = true;
@@ -24,6 +35,9 @@ public class SetSpawnPrefab : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
+        bigScrollCopyToggle.SetActive(false);
+        smallScrollCopyToggle.SetActive(false);
+        etcScrollCopyToggle.SetActive(false);
 
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
         toggles = new List<GameObject>();
@@ -32,19 +46,19 @@ public class SetSpawnPrefab : MonoBehaviour
         Debug.Log("로드 완료");
         Debug.Log("--------------------------------------");
 
-        SpawnToggle();
+        SpawnToggle(prefabsBig, bigScrollCopyToggle, bigScrollCopyParent);
+        SpawnToggle(prefabsSmall, smallScrollCopyToggle, smallScrollCopyParent);
+        SpawnToggle(prefabsEtc, etcScrollCopyToggle, etcScrollCopyParent);
     }
 
     private void Update()
     {
-        //Debug.Log(OVRInput.GetActiveController() + " : " + OVRInput.GetActiveController().GetType());
-        //Debug.Log(OVRInput.activeControllerType + " : -----------" + OVRInput.activeControllerType == "Touch");
-
         if (OVRInput.activeControllerType == OVRInput.Controller.Touch)
             controllerMode = true;
         else
             controllerMode = false;
 
+        // 컨트롤러 사용중이면
         if (controllerMode)
         {
             transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + new Vector3(0, 0.28f, 0);
@@ -53,9 +67,9 @@ public class SetSpawnPrefab : MonoBehaviour
         else
         {
             Debug.Log("핸드모드 or 컨트롤러 이외");
-            transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand) + new Vector3(0, 0.28f, 0);
-            transform.LookAt(Camera.main.transform);
-            transform.forward = Camera.main.transform.forward;
+            //transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand) + new Vector3(0, 0.28f, 0);
+            //transform.LookAt(Camera.main.transform);
+            //transform.forward = Camera.main.transform.forward;
 
             //transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
         }
@@ -63,12 +77,16 @@ public class SetSpawnPrefab : MonoBehaviour
 
     }
 
-    private void SpawnToggle()
+    private void SpawnToggle(List<GameObject> prefabs, GameObject copyToggle, GameObject copyParent)
     {
 
         for (int i = 0; i < prefabs.Count; i++)
         {
             int index = i;
+
+            if (prefabs[index] == null)
+                continue;
+
             GameObject tg = Instantiate(copyToggle, copyParent.transform);
 
             // TextMeshPro 컴포넌트 가져오기
@@ -82,7 +100,7 @@ public class SetSpawnPrefab : MonoBehaviour
             Toggle toggleComponent = tg.GetComponent<Toggle>();
 
             // OnValueChanged 이벤트에 SetSpawnPrefab 함수 연결
-            toggleComponent.onValueChanged.AddListener(delegate { SpawnIndex(index); });
+            toggleComponent.onValueChanged.AddListener(delegate { SpawnIndex(prefabs[index]); });
 
             tg.SetActive(true);
             toggles.Add(tg);
@@ -92,15 +110,16 @@ public class SetSpawnPrefab : MonoBehaviour
     }
 
 
-    public void SpawnIndex(int index)
+    public void SpawnIndex(GameObject furniture)
     {
-        simplePrefabSpawner.setPrefab(prefabs[index]);
+        simplePrefabSpawner.setPrefab(furniture);
     }
 
-    public void CancelToggle ()
+    public void CancelToggle()
     {
         foreach (GameObject tg in toggles)
         {
+            tg.GetComponent<Toggle>().isOn = false;
             tg.GetComponent<AnimatorOverrideLayerWeigth>().SetOverrideLayerActive(false);
         }
     }
@@ -109,6 +128,13 @@ public class SetSpawnPrefab : MonoBehaviour
     public void SetActiveUI()
     {
         gameObject.SetActive(!gameObject.activeInHierarchy);
+
+        // 핸드트래킹 모드일 때 UI창 활성화 하면 앞에 스폰하도록
+        if (gameObject.activeInHierarchy && !controllerMode)
+        {
+            gameObject.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + Vector3.forward * 0.2f;
+        }
+        
     }
 
 }

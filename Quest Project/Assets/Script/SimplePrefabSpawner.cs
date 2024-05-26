@@ -16,17 +16,18 @@ public class SimplePrefabSpawner : MonoBehaviour
     private bool spawnMode = false;
 
 
+    private float rotationSpeed = 100f;
+    private float scaleSpeed = 0.5f;
+    private float minScale = 0.3f;
+    private float maxScale = 2f;
+
+
     private void Start()
     {
         currentPreview = Instantiate(previewPrefab);
         cancel();
     }
 
-
-    private float rotationSpeed = 100f;
-    private float scaleSpeed = 0.5f;
-    private float minScale = 0.3f;
-    private float maxScale = 2f;
 
     private void Update()
     {
@@ -77,6 +78,8 @@ public class SimplePrefabSpawner : MonoBehaviour
             {
                 GameObject instantiatedPrefab = Instantiate(prefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                 instantiatedPrefab.transform.localScale = currentPreview.transform.localScale;
+                instantiatedPrefab.transform.rotation = currentPreview.transform.rotation;
+                cancel();
             }
         }
     }
@@ -95,13 +98,20 @@ public class SimplePrefabSpawner : MonoBehaviour
             {
                 mesh = meshChild.GetComponent<MeshFilter>().sharedMesh;
                 currentPreview.GetComponent<MeshFilter>().sharedMesh = mesh;
+
+                spawnMode = true;
+                currentPreview.transform.localScale = Vector3.one;
+                currentPreview.transform.rotation = Quaternion.Euler(Vector3.zero);
+                currentPreview.SetActive(true);
             }
         }
+        else
+        {
+            cancel();
+            return;
+        }
 
-        spawnMode = true;
-        currentPreview.transform.localScale = Vector3.one;
-        currentPreview.transform.rotation = Quaternion.Euler(Vector3.zero);
-        currentPreview.SetActive(true);
+
     }
 
     public void cancel()
