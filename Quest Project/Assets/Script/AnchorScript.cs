@@ -130,13 +130,12 @@ public class AnchorScript : MonoBehaviour
         {
             if (success)
             {
-                DeleteUuidByValue(uuid_string);
                 savedStatusText.text = "Not Saved";
             }
         });
 
 
-        
+        DeleteUuidByValue(uuid_string);
     }
 
     void DeleteUuidByValue(string uuidValue)

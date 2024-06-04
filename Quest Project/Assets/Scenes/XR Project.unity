@@ -25228,7 +25228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3670086197890737101, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_text
-      value: Option 1
+      value: Delete PlayerPrefabs
       objectReference: {fileID: 0}
     - target: {fileID: 3670086197890737101, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_sharedMaterial
@@ -25281,6 +25281,34 @@ PrefabInstance:
     - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_IsOn
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 98207352}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DeletePlayerPrefabs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LoadSpatialAnchor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3670086198666010805, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchorMax.y
