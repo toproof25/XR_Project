@@ -7,19 +7,23 @@ using UnityEngine;
 
 public class AnchorScript : MonoBehaviour
 {
-    public OVRSpatialAnchor anchorPrefab;
-
     public const string NumUuidsPlayerPref = "numUuids";
 
     public GameObject canvas;
     public TextMeshProUGUI uuidText;
     public TextMeshProUGUI savedStatusText;
+    public TMP_Text buttonText;
+    public OVRSpatialAnchor spatialAnchor;
 
-    private List<OVRSpatialAnchor> anchors = new List<OVRSpatialAnchor>();
-    private OVRSpatialAnchor lastCreatedAnchor;
 
-    private bool isAnchored = false;
-    private bool isSaved = false;
+    public bool isAnchored = false;
+    public string uuid_string;
+
+    private void Awake()
+    {
+        Debug.Log(gameObject.name + " -----------------------------------------------------------------------------");
+        spatialAnchor = GetComponent<OVRSpatialAnchor>();
+    }
 
     private void Update()
     {
@@ -35,52 +39,40 @@ public class AnchorScript : MonoBehaviour
 
         // 앵커가 없으면 생성
         if (isAnchored == false) {
-            //anchorPrefab.enabled = true;
-            anchorPrefab = gameObject.AddComponent<OVRSpatialAnchor>();
-            StartCoroutine(AnchorCreated(anchorPrefab));
+            //spatialAnchor.enabled = true;
+            spatialAnchor = gameObject.AddComponent<OVRSpatialAnchor>();
+
+            buttonText.text = "Lock";
+
+            StartCoroutine(AnchorCreated(spatialAnchor));
         }
         // 앵커가 있으면 제거
         else
         {
             OnEraseButtonPressed();
+
+            buttonText.text = "Unlock";
             uuidText.text = "no UUID";
             savedStatusText.text = "No Anchor";
-            anchors.Clear();
-            //anchorPrefab.enabled = false;
-            Destroy(anchorPrefab);
+
+            //spatialAnchor.enabled = false;
+            Destroy(spatialAnchor);
         }
     }
 
 
-    public void SavedOrUnsaved()
-    {
-        isSaved = !isSaved;
-
-        // 세이브가 안돼있으면 세이브
-        if (isSaved == true)
-        {
-            SaveLastCreatedAnchor();
-        }
-        // 세이브가 돼있으면 언세이브
-        else
-        {
-            UnsaveLastCreatedAnchor();
-        }
-
-    }
-    
 
     // 앵커 삭제
     async void OnEraseButtonPressed()
     {
-        var result = await anchorPrefab.EraseAnchorAsync();
+        var result = await spatialAnchor.EraseAnchorAsync();
         if (result.Success)
         {
             Debug.Log($"Successfully erased anchor.");
         }
         else
         {
-            Debug.LogError($"Failed to erase anchor {anchorPrefab.Uuid} with result {result.Status}");
+            Debug.LogError($"Failed to erase anchor {spatialAnchor.Uuid} with result {result.Status}");
         }
     }
 
@@ -94,8 +86,7 @@ public class AnchorScript : MonoBehaviour
         }
 
         Guid anchorGuid = workingAnchor.Uuid;
-        anchors.Add(workingAnchor);
-        lastCreatedAnchor = workingAnchor;
+        spatialAnchor = workingAnchor;
 
         uuidText.text = "UUID: " + anchorGuid.ToString();
         savedStatusText.text = "Not Saved";
@@ -103,16 +94,16 @@ public class AnchorScript : MonoBehaviour
 
 
     // 앵커 세이브 함수
-    public void SaveLastCreatedAnchor()
+    public void SaveAnchor()
     {
-        lastCreatedAnchor.Save((lastCreatedAnchor, success) => {
+        spatialAnchor.Save((savedAnchor, success) => {
             if (success)
             {
                 savedStatusText.text = "Saved";
             }
         });
 
-        SaveUuidToPlayerPrefs(lastCreatedAnchor.Uuid);
+        SaveUuidToPlayerPrefs(spatialAnchor.Uuid);
     }
 
     void SaveUuidToPlayerPrefs(Guid uuid)
@@ -124,23 +115,52 @@ public class AnchorScript : MonoBehaviour
         }
 
         int playerNumUuids = PlayerPrefs.GetInt(NumUuidsPlayerPref);
-        PlayerPrefs.SetString("uuid" + playerNumUuids, uuid.ToString());
+        uuid_string = uuid.ToString();
+        PlayerPrefs.SetString("uuid" + playerNumUuids, uuid_string);
+        PlayerPrefs.SetString(uuid_string, gameObject.name);
         PlayerPrefs.SetInt(NumUuidsPlayerPref, ++playerNumUuids);
-
+        PlayerPrefs.Save();
     }
 
+
     // 앵커 세이브 해제 함수
-    public void UnsaveLastCreatedAnchor()
+    public void UnsaveAnchor()
     {
-        lastCreatedAnchor.Erase((lastCreatedAnchor, success) =>
+        spatialAnchor.Erase((erasedAnchor, success) =>
         {
             if (success)
             {
+                DeleteUuidByValue(uuid_string);
                 savedStatusText.text = "Not Saved";
             }
         });
 
+
+        
     }
+
+    void DeleteUuidByValue(string uuidValue)
+    {
+        if (PlayerPrefs.HasKey(NumUuidsPlayerPref))
+        {
+            int playerNumUuids = PlayerPrefs.GetInt(NumUuidsPlayerPref);
+
+            for (int i = 0; i < playerNumUuids; i++)
+            {
+                string key = "uuid" + i;
+                if (PlayerPrefs.GetString(key) == uuidValue)
+                {
+                    PlayerPrefs.DeleteKey(key);
+                    PlayerPrefs.DeleteKey(uuidValue);
+
+                    Debug.Log($"Deleted key: {key}");
+                    PlayerPrefs.Save();
+                    break;
+                }
+            }
+        }
+    }
+
 
 
 }

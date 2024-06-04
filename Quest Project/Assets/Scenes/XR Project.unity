@@ -1138,6 +1138,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorPrefab: {fileID: 3626832878560254278, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
+  prefabs_name:
+  - box(Clone)
+  - dresser(Clone)
+  - kitchen_chair(Clone)
+  prefabs_model:
+  - {fileID: 5800242536724693876, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
+  - {fileID: 8850592322307683487, guid: 0090b89d60f08c1439c4e2b1ccfb6a29, type: 3}
+  - {fileID: 1764747497564236069, guid: dfee15f1de144d742b985b2b01950ff2, type: 3}
 --- !u!1 &103332510
 GameObject:
   m_ObjectHideFlags: 0
@@ -6719,6 +6727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passthroughLayer: {fileID: 1770785160}
   ovrCameraRig: {fileID: 440024934}
+  m_loadSpatialAnchor: {fileID: 98207352}
 --- !u!4 &269092298
 Transform:
   m_ObjectHideFlags: 0
@@ -15742,34 +15751,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: box
       objectReference: {fileID: 0}
+    - target: {fileID: 5800242536724693876, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6389070466828122231, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6366032333662550169, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 508537421186349742, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6746690687116163491, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2528630859408767366, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3620541504612010966, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6998188335990514176, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 552685573287375573, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
 --- !u!1 &915301468
 GameObject:
@@ -23703,9 +23692,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactors:
+  - {fileID: 197214923}
   - {fileID: 2143672557}
   - {fileID: 1644589256}
-  - {fileID: 197214923}
   - {fileID: 490169052}
   _activeState: {fileID: 0}
   _candidateComparer: {fileID: 0}
@@ -25287,7 +25276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3670086198356348428, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000045776367
+      value: -0.000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 3670086198666010800, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_IsOn
@@ -25339,7 +25328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3670086198666010805, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -51.500046
+      value: -51.500076
       objectReference: {fileID: 0}
     - target: {fileID: 3670086198666010806, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_IsActive
@@ -26051,7 +26040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820298705798557963, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000045776367
+      value: -0.000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 4961724161901883552, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_sharedMaterial
@@ -27445,7 +27434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8293452744905220670, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -178.50005
+      value: -178.50008
       objectReference: {fileID: 0}
     - target: {fileID: 8293452745806586181, guid: 24227e8b02b65ba40923c6f411c841bf, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33335,8 +33324,8 @@ MonoBehaviour:
   simplePrefabSpawnerObject: {fileID: 1514450404}
   prefabsBig:
   - {fileID: 5800242536724693876, guid: 22ebac6d2bb6e3d4387447201dc865d9, type: 3}
-  - {fileID: 8530748029900995219, guid: 0090b89d60f08c1439c4e2b1ccfb6a29, type: 3}
-  - {fileID: 5333922738706062028, guid: dfee15f1de144d742b985b2b01950ff2, type: 3}
+  - {fileID: 8850592322307683487, guid: 0090b89d60f08c1439c4e2b1ccfb6a29, type: 3}
+  - {fileID: 1764747497564236069, guid: dfee15f1de144d742b985b2b01950ff2, type: 3}
   prefabsSmall:
   - {fileID: 3826551405441834781, guid: e251cadc21818e144856f3ac2a04d330, type: 3}
   - {fileID: 318905326396406068, guid: 8288e24436a5e6942981166e6e7f7442, type: 3}
@@ -41681,9 +41670,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactors:
+  - {fileID: 605984662}
   - {fileID: 1529633755}
   - {fileID: 561750412}
-  - {fileID: 605984662}
   - {fileID: 536722799}
   _activeState: {fileID: 0}
   _candidateComparer: {fileID: 0}
@@ -42245,9 +42234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactors:
+  - {fileID: 427470562}
   - {fileID: 219343897}
   - {fileID: 1842760117}
-  - {fileID: 427470562}
   - {fileID: 485182319}
   _activeState: {fileID: 0}
   _candidateComparer: {fileID: 0}
@@ -44326,9 +44315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactors:
+  - {fileID: 1561110163}
   - {fileID: 992536463}
   - {fileID: 1961586290}
-  - {fileID: 1561110163}
   - {fileID: 1437103952}
   _activeState: {fileID: 0}
   _candidateComparer: {fileID: 0}

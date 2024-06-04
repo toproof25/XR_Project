@@ -66,7 +66,7 @@ public class SetSpawnPrefab : MonoBehaviour
         }
         else
         {
-            Debug.Log("핸드모드 or 컨트롤러 이외");
+            //Debug.Log("핸드모드 or 컨트롤러 이외");
             //transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand) + new Vector3(0, 0.28f, 0);
             //transform.LookAt(Camera.main.transform);
             //transform.forward = Camera.main.transform.forward;

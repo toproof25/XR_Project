@@ -3799,10 +3799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20de89bcf0756ae47a1b291e2263abdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchorPrefab: {fileID: 3626832878560254278}
   canvas: {fileID: 3776598994774160982}
   uuidText: {fileID: 4395232830687836169}
   savedStatusText: {fileID: 2473438199031064277}
+  buttonText: {fileID: 136185838079679559}
+  spatialAnchor: {fileID: 3626832878560254278}
+  isAnchored: 0
+  uuid_string: 
 --- !u!114 &3626832878560254278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5125,7 +5128,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: UnLock
+  m_text: Lock
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
   m_sharedMaterial: {fileID: -5839354330806206608, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
@@ -5836,7 +5839,7 @@ GameObject:
   - component: {fileID: 8635964168493437323}
   - component: {fileID: 1626402533669007889}
   m_Layer: 0
-  m_Name: PokeInteractable SaveOrUnSave
+  m_Name: PokeInteractable Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6056,7 +6059,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5058580377747593738}
         m_TargetAssemblyTypeName: AnchorScript, Assembly-CSharp
-        m_MethodName: SavedOrUnsaved
+        m_MethodName: SaveAnchor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6936,7 +6939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save
+  m_text: Unsave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
   m_sharedMaterial: {fileID: -5839354330806206608, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
@@ -8709,7 +8712,7 @@ GameObject:
   - component: {fileID: 323762426148183321}
   - component: {fileID: 8113515396669024101}
   m_Layer: 0
-  m_Name: PokeInteractable 1
+  m_Name: PokeInteractable Unsave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8918,6 +8921,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1447991417610868136}
         m_TargetAssemblyTypeName: Oculus.Interaction.AudioTrigger, Oculus.Interaction.Samples
         m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5058580377747593738}
+        m_TargetAssemblyTypeName: AnchorScript, Assembly-CSharp
+        m_MethodName: UnsaveAnchor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

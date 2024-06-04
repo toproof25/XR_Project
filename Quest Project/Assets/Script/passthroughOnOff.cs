@@ -12,6 +12,7 @@ public class passthroughOnOff : MonoBehaviour
 
     private GameObject RoomModel;
 
+    public LoadSpatialAnchor m_loadSpatialAnchor;
 
     private void Update()
     {
@@ -20,16 +21,18 @@ public class passthroughOnOff : MonoBehaviour
             return;
         }
 
-        // OVR Scene Room ÄÄÆ÷³ÍÆ®¸¦ °¡Áø ¿ÀºêÁ§Æ®¸¦ Ã£½À´Ï´Ù.
+        // OVR Scene Room ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
         try
         {
             RoomModel = GameObject.FindObjectOfType<OVRSceneRoom>().gameObject;
+            Debug.Log("ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰ë£¸ì‹¤í–‰");
+            m_loadSpatialAnchor.LoadAnchorsBtUuid();
             //passthrough();
         }
 
         catch (Exception NullReferenceException)
         {
-            Debug.Log("¾ÆÁ÷ ·ëÀÌ »ı¼ºµÇÁö ¾ÊÀ½");
+            Debug.Log("ì•„ì§ ë£¸ì´ ìƒì„±ë˜ì§€ ì•ŠìŒ");
         }
     }
 
@@ -39,10 +42,10 @@ public class passthroughOnOff : MonoBehaviour
 
         if (onOff)
         {
-            passthroughLayer.SetActive(true); // ÆĞ½º½º·ç ·¹ÀÌ¾î È°¼ºÈ­
+            passthroughLayer.SetActive(true); // íŒ¨ìŠ¤ìŠ¤ë£¨ ë ˆì´ì–´ í™œì„±í™”
             ToggleMeshRenderersInChildren(false);    
 
-            // Ä«¸Ş¶ó ¹è°æÀ» Åõ¸íÇÏ°Ô ¼³Á¤
+            // ì¹´ë©”ë¼ ë°°ê²½ì„ íˆ¬ëª…í•˜ê²Œ ì„¤ì •
             //OVRCameraRig ovrCameraRig = GameObject.Find("OVRCameraRig").GetComponent<OVRCameraRig>();
             Camera centerCamera = ovrCameraRig.centerEyeAnchor.GetComponent<Camera>();
             centerCamera.clearFlags = CameraClearFlags.SolidColor;
@@ -58,16 +61,16 @@ public class passthroughOnOff : MonoBehaviour
 
     public void ToggleMeshRenderersInChildren(bool enable)
     {
-        // RoomModel ÀÚ½Ä °¡Á®¿À±â
+        // RoomModel ìì‹ ê°€ì ¸ì˜¤ê¸°
         Transform[] childTransforms = RoomModel.transform.GetComponentsInChildren<Transform>();
 
-        // ÀÚ½Ä ¼øÈ¸
+        // ìì‹ ìˆœíšŒ
         foreach (Transform childTransform in childTransforms)
         {
-            // ÀÚ½Ä ¿ÀºêÁ§Æ® - Mesh Renderer Ã£±â
+            // ìì‹ ì˜¤ë¸Œì íŠ¸ - Mesh Renderer ì°¾ê¸°
             MeshRenderer meshRenderer = childTransform.GetComponent<MeshRenderer>();
 
-            // ÀÖÀ¸¸é È°¼ºÈ­/ºñÈ°¼ºÈ­
+            // ìˆìœ¼ë©´ í™œì„±í™”/ë¹„í™œì„±í™”
             if (meshRenderer != null)
             {
                 meshRenderer.enabled = enable;
