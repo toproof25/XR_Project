@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class SimplePrefabSpawner : MonoBehaviour
 {
-    [Tooltip ("½ÇÁ¦·Î ¼³Ä¡µÇ´Â ¿ÀºêÁ§Æ®")]
+    [Tooltip ("ì‹¤ì œë¡œ ì„¤ì¹˜ë˜ëŠ” ì˜¤ë¸Œì íŠ¸")]
     public GameObject prefab;
 
-    [Tooltip("º®¿¡ ¼³Ä¡µÉ °÷ÀÌ Ç¥½ÃµÇ´Â °¡»óÀÇ ¿ÀºêÁ§Æ®")]
+    [Tooltip("ë²½ì— ì„¤ì¹˜ë  ê³³ì´ í‘œì‹œë˜ëŠ” ê°€ìƒì˜ ì˜¤ë¸Œì íŠ¸")]
     public GameObject previewPrefab;
     private GameObject currentPreview;
 
@@ -41,32 +41,33 @@ public class SimplePrefabSpawner : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            //Debug.Log($"·¹ÀÌÄ³½ºÆ®°¡ '{hit.collider.gameObject.name}' ¿ÀºêÁ§Æ®¿Í Ãæµ¹Çß½À´Ï´Ù. (ÅÂ±×: {hit.collider.tag}, À§Ä¡: {hit.point})");
+            //Debug.Log($"ë ˆì´ìºìŠ¤íŠ¸ê°€ '{hit.collider.gameObject.name}' ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒí–ˆìŠµë‹ˆë‹¤. (íƒœê·¸: {hit.collider.tag}, ìœ„ì¹˜: {hit.point})");
             currentPreview.transform.position = hit.point;
             //currentPreview.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
             if (OVRInput.Get(OVRInput.Button.Left))
             {
-                // ¿ŞÂÊ È¸Àü
+                // ì™¼ìª½ íšŒì „
                 currentPreview.transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
             }
             else if (OVRInput.Get(OVRInput.Button.Right))
             {
-                // ¿À¸¥ÂÊ È¸Àü
+                // ì˜¤ë¥¸ìª½ íšŒì „
                 currentPreview.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
             }
 
             Vector3 currentScale = currentPreview.transform.localScale;
             if (OVRInput.Get(OVRInput.Button.Up))
             {
-                // ½ºÄÉÀÏ Áõ°¡
+                // ìŠ¤ì¼€ì¼ ì¦ê°€
                 currentScale += Vector3.one * scaleSpeed * Time.deltaTime;
             }
             else if (OVRInput.Get(OVRInput.Button.Down))
             {
-                // ½ºÄÉÀÏ °¨¼Ò
+                // ìŠ¤ì¼€ì¼ ê°ì†Œ
                 currentScale -= Vector3.one * scaleSpeed * Time.deltaTime;
             }
+
             currentScale.x = Mathf.Clamp(currentScale.x, minScale, maxScale);
             currentScale.y = Mathf.Clamp(currentScale.y, minScale, maxScale);
             currentScale.z = Mathf.Clamp(currentScale.z, minScale, maxScale);

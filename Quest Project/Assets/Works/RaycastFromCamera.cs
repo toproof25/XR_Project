@@ -2,6 +2,7 @@ using System.Collections;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class RaycastFromCamera : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class RaycastFromCamera : MonoBehaviour
     public Transform raycastOrigin; // 새로 추가된 필드
     public GameObject objectToMove; // 이동할 물체
 
-    private Collider _collider;
+    public Collider _collider;
+
+
+    private bool input_mode = false;
 
     // Event wrapper
     [System.Serializable]
@@ -29,47 +33,54 @@ public class RaycastFromCamera : MonoBehaviour
         }
         else
         {
-            _collider = objectToMove.GetComponent<Collider>();
+            //_collider = objectToMove.GetComponent<Collider>();
             if (_collider == null)
             {
-                Debug.LogError("Collider not found on the object to move. Please ensure the object has a collider.");
+                //Debug.LogError("Collider not found on the object to move. Please ensure the object has a collider.");
             }
         }
     }
 
+    private void Update()
+    {
+        // Y누르고 언셀레드 하면 벽에 붙음
+        if (OVRInput.Get(OVRInput.Button.Four))
+        {
+            //Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            input_mode = true;
+        }
+        else
+        {
+            input_mode = false;
+        }
+    }
+
+
     public void CheckObjectInFront()
     {
-        if (raycastOrigin != null)
+        //Debug.Log(input_mode + " : " + raycastOrigin != null);
+        if (raycastOrigin != null && input_mode)
         {
-            // 레이캐스트 오브젝트의 정면 방향으로 레이캐스트 쏘기
-            Ray ray = new Ray(raycastOrigin.position, raycastOrigin.forward);
-            RaycastHit[] hits = Physics.RaycastAll(ray, rayDistance, layerMask);
+            Ray ray = new Ray(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch) + Vector3.forward, OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch)*Vector3.forward);
 
-            // 레이의 시작 위치와 방향 출력
-            Debug.Log($"Ray origin: {ray.origin}, direction: {ray.direction}");
-
-            foreach (var hit in hits)
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // 이동할 물체와 레이로 닿은 물체가 동일하지 않은 경우에만 처리
-                if (hit.collider.gameObject != objectToMove)
-                {
-                    Debug.Log("Object hit: " + hit.collider.name);
-                    Debug.Log($"Hit point: {hit.point}, distance: {hit.distance}");
+                Debug.Log("Object hit: " + hit.collider.name);
+                Debug.Log($"Hit point: {hit.point}, distance: {hit.distance}");
 
-                    // Start coroutine to move and align the object after 0.2 seconds
-                    StartCoroutine(MoveAndAlignToHitPointAfterDelay(hit.point, hit.normal, 0.05f));
+                // Start coroutine to move and align the object after 0.2 seconds
+                StartCoroutine(MoveAndAlignToHitPointAfterDelay(hit.point, hit.normal, 0.05f));
 
-                    // Trigger the event
-                    OnRaycast.Invoke();
-                    return; // 첫 번째로 이동할 물체와 동일하지 않은 물체를 타격하면 반환
-                }
+                // Trigger the event
+                OnRaycast.Invoke();
+                return; // 첫 번째로 이동할 물체와 동일하지 않은 물체를 타격하면 반환
             }
 
             Debug.Log("No object hit in front of the raycast origin.");
         }
         else
         {
-            Debug.LogError("Raycast origin reference is missing.");
+            Debug.LogError(input_mode + " Raycast origin reference is missing.");
         }
     }
 
