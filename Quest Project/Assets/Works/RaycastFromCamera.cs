@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class RaycastFromCamera : MonoBehaviour
 {
     public float rayDistance = 100.0f;
-    public LayerMask layerMask; // Æ¯Á¤ ·¹ÀÌ¾î¸¦ ·¹ÀÌÄ³½ºÆ®·Î °Ë»çÇÏ·Á¸é ¼³Á¤
-    public Transform raycastOrigin; // »õ·Î Ãß°¡µÈ ÇÊµå
-    public GameObject objectToMove; // ÀÌµ¿ÇÒ ¹°Ã¼
+    public LayerMask layerMask; // íŠ¹ì • ë ˆì´ì–´ë¥¼ ë ˆì´ìºìŠ¤íŠ¸ë¡œ ê²€ì‚¬í•˜ë ¤ë©´ ì„¤ì •
+    public Transform raycastOrigin; // ìƒˆë¡œ ì¶”ê°€ëœ í•„ë“œ
+    public GameObject objectToMove; // ì´ë™í•  ë¬¼ì²´
 
     private Collider _collider;
 
@@ -41,27 +41,27 @@ public class RaycastFromCamera : MonoBehaviour
     {
         if (raycastOrigin != null)
         {
-            // ·¹ÀÌÄ³½ºÆ® ¿ÀºêÁ§Æ®ÀÇ Á¤¸é ¹æÇâÀ¸·Î ·¹ÀÌÄ³½ºÆ® ½î±â
+            // ë ˆì´ìºìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ì˜ ì •ë©´ ë°©í–¥ìœ¼ë¡œ ë ˆì´ìºìŠ¤íŠ¸ ì˜ê¸°
             Ray ray = new Ray(raycastOrigin.position, raycastOrigin.forward);
             RaycastHit[] hits = Physics.RaycastAll(ray, rayDistance, layerMask);
 
-            // ·¹ÀÌÀÇ ½ÃÀÛ À§Ä¡¿Í ¹æÇâ Ãâ·Â
+            // ë ˆì´ì˜ ì‹œì‘ ìœ„ì¹˜ì™€ ë°©í–¥ ì¶œë ¥
             Debug.Log($"Ray origin: {ray.origin}, direction: {ray.direction}");
 
             foreach (var hit in hits)
             {
-                // ÀÌµ¿ÇÒ ¹°Ã¼¿Í ·¹ÀÌ·Î ´êÀº ¹°Ã¼°¡ µ¿ÀÏÇÏÁö ¾ÊÀº °æ¿ì¿¡¸¸ Ã³¸®
+                // ì´ë™í•  ë¬¼ì²´ì™€ ë ˆì´ë¡œ ë‹¿ì€ ë¬¼ì²´ê°€ ë™ì¼í•˜ì§€ ì•Šì€ ê²½ìš°ì—ë§Œ ì²˜ë¦¬
                 if (hit.collider.gameObject != objectToMove)
                 {
                     Debug.Log("Object hit: " + hit.collider.name);
                     Debug.Log($"Hit point: {hit.point}, distance: {hit.distance}");
 
                     // Start coroutine to move and align the object after 0.2 seconds
-                    StartCoroutine(MoveAndAlignToHitPointAfterDelay(hit.point, hit.normal, 0.2f));
+                    StartCoroutine(MoveAndAlignToHitPointAfterDelay(hit.point, hit.normal, 0.05f));
 
                     // Trigger the event
                     OnRaycast.Invoke();
-                    return; // Ã¹ ¹øÂ°·Î ÀÌµ¿ÇÒ ¹°Ã¼¿Í µ¿ÀÏÇÏÁö ¾ÊÀº ¹°Ã¼¸¦ Å¸°İÇÏ¸é ¹İÈ¯
+                    return; // ì²« ë²ˆì§¸ë¡œ ì´ë™í•  ë¬¼ì²´ì™€ ë™ì¼í•˜ì§€ ì•Šì€ ë¬¼ì²´ë¥¼ íƒ€ê²©í•˜ë©´ ë°˜í™˜
                 }
             }
 
@@ -77,17 +77,21 @@ public class RaycastFromCamera : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Move the object to the hit point along the hit normal
+        // Move the object to the hit point
         if (_collider != null)
         {
-            Vector3 adjustedPosition = hitPoint + hitNormal * (_collider.bounds.extents.magnitude / 2);
-            objectToMove.transform.position = adjustedPosition;
+            // Adjusted position so that the object's surface touches the hit point
+            Vector3 adjustedPosition = hitPoint + hitNormal * (_collider.bounds.extents.magnitude / 2.5f);
+            transform.position = adjustedPosition;
 
-            // Adjust the rotation based on the hit normal
-            Quaternion targetRotation = Quaternion.LookRotation(hitNormal);
-            objectToMove.transform.rotation = AdjustRotationToNearestOrthogonal(targetRotation);
+            // Adjust the rotation to align with the surface normal
+            Quaternion adjustedRotation = Quaternion.LookRotation(hitNormal);
+            adjustedRotation *= Quaternion.Euler(90, 0, 0); // Add 90 degrees to the x-axis rotation
+            transform.rotation = adjustedRotation;
         }
     }
+
+
 
     private Quaternion AdjustRotationToNearestOrthogonal(Quaternion targetRotation)
     {
