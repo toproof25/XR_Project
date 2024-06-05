@@ -4,35 +4,34 @@ using UnityEngine;
 
 public class Explanation : MonoBehaviour
 {
-    public GameObject explanationWindow; // ¼³¸íÃ¢ UI GameObject¸¦ ¿¬°áÇÒ º¯¼ö
+    public GameObject explanationWindow; // ì„¤ëª…ì°½ UI GameObjectë¥¼ ì—°ê²°í•  ë³€ìˆ˜
 
     private bool isExplanationActive = false;
 
     void Update()
     {
-        // A ¹öÆ°ÀÌ ´­·ÈÀ» ¶§
-        if (OVRInput.GetDown(OVRInput.Button.One)) // ¿¹¸¦ µé¾î A ¹öÆ°ÀÌ One¿¡ ÇØ´çÇÑ´Ù¸é
-        {
-            // ¼³¸íÃ¢ÀÌ È°¼ºÈ­µÇ¾î ÀÖÀ¸¸é ºñÈ°¼ºÈ­, ¾Æ´Ï¸é È°¼ºÈ­
-            if (isExplanationActive == true)
-            {
-                isExplanationActive = false;
-            }
-            else if (isExplanationActive == false)
-            {
-                isExplanationActive = true;
-            }
-            // ¼³¸íÃ¢ÀÇ È°¼ºÈ­ ¿©ºÎ¿¡ µû¶ó Ã³¸®
-            //explanationWindow.SetActive(isExplanationActive);
+        if (isExplanationActive) {
+            UpdateExplanationPosition();
         }
+    }
+    private void UpdateExplanationPosition() {
+        Vector3 controllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch) + new Vector3(0, 0.28f, 0); ; // ì˜¤ë¥¸ìª½ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ìœ„ì¹˜
+        Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch); // ì˜¤ë¥¸ìª½ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ íšŒì „
+        explanationWindow.transform.position = controllerPosition;
+        explanationWindow.transform.rotation = controllerRotation;
+    }
 
-        if (isExplanationActive)
+    public void ToggleExplanationWindow()
+    {
+        isExplanationActive = !isExplanationActive;
+        if (isExplanationActive) 
         {
-            // ¼³¸íÃ¢À» ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ À§Ä¡¿¡ µû¶ó ÀÌµ¿
-            Vector3 controllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch) + new Vector3(0, 0.28f, 0); ; // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ÀÇ À§Ä¡
-            Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch); // ¿À¸¥ÂÊ ÄÁÆ®·Ñ·¯ÀÇ È¸Àü
-            explanationWindow.transform.position = controllerPosition;
-            explanationWindow.transform.rotation = controllerRotation;
+            explanationWindow.SetActive(true);
+            UpdateExplanationPosition();
+        }
+        else
+        {
+            explanationWindow.SetActive(false);
         }
     }
 }
