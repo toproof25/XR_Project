@@ -13,7 +13,6 @@ public class RaycastFromCamera : MonoBehaviour
 
     public Collider _collider;
 
-
     private bool input_mode = false;
 
     // Event wrapper
@@ -41,19 +40,62 @@ public class RaycastFromCamera : MonoBehaviour
         }
     }
 
+    private Transform cubeClone;
+
     private void Update()
     {
         // Y누르고 언셀레드 하면 벽에 붙음
         if (OVRInput.Get(OVRInput.Button.Four))
         {
-            //Debug.Log("YYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
             input_mode = true;
+
+            Transform cubeTransform = raycastOrigin.parent.Find("Visuals/ControllerRay/Cube");
+            if (cubeClone == null)
+            {
+                
+                Transform cubeClone = Instantiate(cubeTransform, cubeTransform.parent);
+
+                cubeClone.gameObject.SetActive(true);
+                cubeClone.localScale = new Vector3(1, 1, 3);
+            }
+            else
+            {
+                cubeClone.position = cubeTransform.position;
+                cubeClone.rotation = cubeTransform.rotation;
+            }
         }
         else
         {
             input_mode = false;
+            if (cubeClone != null)
+            {
+                Destroy(cubeClone.gameObject);
+                cubeClone = null;
+            }
         }
     }
+    /*    private void Update()
+        {
+            Transform cubeTransform = raycastOrigin.parent.Find("Visuals/ControllerRay/Cube");
+
+
+            // Y누르고 언셀레드 하면 벽에 붙음
+            if (OVRInput.Get(OVRInput.Button.Four))
+            {
+                input_mode = true;
+
+                    cubeTransform.gameObject.SetActive(true);
+                    cubeTransform.localScale = new Vector3(4, 4, 4); // 스케일을 4배로 고정
+
+            }
+            else
+            {
+                input_mode = false;
+
+                // 원본의 스케일을 1, 1, 1로 고정
+                cubeTransform.localScale = new Vector3(1, 1, 1);
+            }
+        }*/
 
 
     public void CheckObjectInFront()
