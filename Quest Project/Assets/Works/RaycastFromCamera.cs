@@ -53,7 +53,7 @@ public class RaycastFromCamera : MonoBehaviour
             if (cubeClone == null)
             {
                 
-                cubeClone = Instantiate(cubeTransform, cubeTransform);
+                cubeClone = Instantiate(cubeTransform, raycastOrigin);
 
                 cubeClone.gameObject.SetActive(true);
                 cubeClone.localScale = new Vector3(1, 1, 3);
