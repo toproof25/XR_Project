@@ -20,6 +20,24 @@ public class RaycastFromCamera : MonoBehaviour
     public class RaycastEvent : UnityEvent { }
     public RaycastEvent OnRaycast;
 
+
+
+    [Tooltip("실제로 설치되는 오브젝트")]
+    public GameObject prefab;
+
+    [Tooltip("벽에 설치될 곳이 표시되는 가상의 오브젝트")]
+    public GameObject previewPrefab;
+    private GameObject currentPreview;
+
+    private bool spawnMode = false;
+
+
+    private float rotationSpeed = 100f;
+    private float scaleSpeed = 0.5f;
+    private float minScale = 0.3f;
+    private float maxScale = 2f;
+
+
     void Start()
     {
         if (raycastOrigin == null)
@@ -40,36 +58,36 @@ public class RaycastFromCamera : MonoBehaviour
         }
     }
 
-    private Transform cubeClone;
+    /*    private Transform cubeClone;
 
+        private void Update()
+        {
+            // Y누르고 언셀레드 하면 벽에 붙음
+            if (OVRInput.Get(OVRInput.Button.Four))
+            {
+                input_mode = true;
+
+                Transform cubeTransform = raycastOrigin.parent.Find("Visuals/ControllerRay/Cube");
+                if (cubeClone == null)
+                {
+
+                    cubeClone = Instantiate(cubeTransform, raycastOrigin);
+
+                    cubeClone.gameObject.GetComponent<MeshRenderer>().enabled=true;
+                    cubeClone.localScale = new Vector3(1, 1, 3);
+                }
+            }
+            else
+            {
+                input_mode = false;
+                if (cubeClone != null)
+                {
+                    Destroy(cubeClone.gameObject);
+                    cubeClone = null;
+                }
+            }
+        }*/
     private void Update()
-    {
-        // Y누르고 언셀레드 하면 벽에 붙음
-        if (OVRInput.Get(OVRInput.Button.Four))
-        {
-            input_mode = true;
-
-            Transform cubeTransform = raycastOrigin.parent.Find("Visuals/ControllerRay/Cube");
-            if (cubeClone == null)
-            {
-                
-                cubeClone = Instantiate(cubeTransform, raycastOrigin);
-
-                cubeClone.gameObject.SetActive(true);
-                cubeClone.localScale = new Vector3(1, 1, 3);
-            }
-        }
-        else
-        {
-            input_mode = false;
-            if (cubeClone != null)
-            {
-                Destroy(cubeClone.gameObject);
-                cubeClone = null;
-            }
-        }
-    }
-/*    private void Update()
     {
         Transform cubeTransform = raycastOrigin.parent.Find("Visuals/ControllerRay/Cube");
 
@@ -77,11 +95,12 @@ public class RaycastFromCamera : MonoBehaviour
         if (OVRInput.Get(OVRInput.Button.Four))
         {
             input_mode = true;
-
+            cubeTransform.gameObject.GetComponent<MeshRenderer>().enabled = true;
             cubeTransform.gameObject.SetActive(true);
             cubeTransform.localScale = new Vector3(1, 1, 4); // 스케일을 4배로 고정
 
         }
+
         else
         {
             input_mode = false;
@@ -89,8 +108,7 @@ public class RaycastFromCamera : MonoBehaviour
             // 원본의 스케일을 1, 1, 1로 고정
             cubeTransform.localScale = new Vector3(1, 1, 1);
         }
-    }*/
-
+    }
 
     public void CheckObjectInFront()
     {
@@ -118,6 +136,42 @@ public class RaycastFromCamera : MonoBehaviour
         {
             Debug.LogError(input_mode + " Raycast origin reference is missing.");
         }
+    }
+
+    public void setPrefab(GameObject pf)
+    {
+        prefab = pf;
+
+        Mesh mesh = null;
+        Transform visualsChild = prefab.transform.Find("Visuals");
+        if (visualsChild != null)
+        {
+            Transform meshChild = visualsChild.Find("Mesh");
+            if (meshChild != null)
+            {
+                mesh = meshChild.GetComponent<MeshFilter>().sharedMesh;
+                currentPreview.GetComponent<MeshFilter>().sharedMesh = mesh;
+
+                spawnMode = true;
+                currentPreview.transform.localScale = Vector3.one;
+                currentPreview.transform.rotation = Quaternion.Euler(Vector3.zero);
+                currentPreview.SetActive(true);
+            }
+        }
+        else
+        {
+            cancel();
+            return;
+        }
+
+
+    }
+
+    public void cancel()
+    {
+        spawnMode = false;
+        prefab = null;
+        currentPreview.SetActive(false);
     }
 
     private IEnumerator MoveAndAlignToHitPointAfterDelay(Vector3 hitPoint, Vector3 hitNormal, float delay)
