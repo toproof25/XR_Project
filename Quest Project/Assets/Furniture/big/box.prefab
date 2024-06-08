@@ -633,7 +633,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save
+  m_text: Gravity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
   m_sharedMaterial: {fileID: -5839354330806206608, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hover on Touch
+  m_text: Meta SDK Team
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3786,7 +3786,7 @@ MonoBehaviour:
   distanceGrabInteractable: {fileID: 3874730603638257718}
   distanceHandGrabInteractable: {fileID: 260506977809709098}
   buttonText: {fileID: 136185838079679559}
-  offset: 0.8
+  gravityText: {fileID: 8512491335132899213}
 --- !u!114 &5058580377747593738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3802,8 +3802,10 @@ MonoBehaviour:
   canvas: {fileID: 3776598994774160982}
   uuidText: {fileID: 4395232830687836169}
   savedStatusText: {fileID: 2473438199031064277}
-  buttonText: {fileID: 136185838079679559}
   spatialAnchor: {fileID: 3626832878560254278}
+  buttonText: {fileID: 136185838079679559}
+  saveText: {fileID: 1837789278783035851}
+  unSaveText: {fileID: 2544115650674580394}
   isAnchored: 0
   uuid_string: 
 --- !u!114 &3626832878560254278
@@ -4156,8 +4158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactables:
-  - {fileID: 6150080040929278638}
   - {fileID: 38721701221703619}
+  - {fileID: 6150080040929278638}
   _data: {fileID: 0}
 --- !u!1 &6121297734802925746
 GameObject:
@@ -4718,8 +4720,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2992106416365444723}
-        m_TargetAssemblyTypeName: FurnitureOption, Assembly-CSharp
+      - m_Target: {fileID: 5058580377747593738}
+        m_TargetAssemblyTypeName: AnchorScript, Assembly-CSharp
         m_MethodName: DeleteObject
         m_Mode: 1
         m_Arguments:
@@ -4776,8 +4778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactables:
-  - {fileID: 4705661285816975866}
   - {fileID: 721720731337595806}
+  - {fileID: 4705661285816975866}
   _data: {fileID: 0}
 --- !u!1 &6332642931830541460
 GameObject:
@@ -5128,7 +5130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lock
+  m_text: UnLock
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
   m_sharedMaterial: {fileID: -5839354330806206608, guid: b8f5aeb9c6de7614db2631011b869bc3, type: 2}
@@ -5299,7 +5301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hover above Buttons
+  m_text: Meta SDK Team
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5838,6 +5840,8 @@ GameObject:
   - component: {fileID: 2183284002318435228}
   - component: {fileID: 8635964168493437323}
   - component: {fileID: 1626402533669007889}
+  - component: {fileID: 547502910684160239}
+  - component: {fileID: 2935579777919004391}
   m_Layer: 0
   m_Name: PokeInteractable Save
   m_TagString: Untagged
@@ -6020,7 +6024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableView: {fileID: 8635964168493437323}
+  _interactableView: {fileID: 2935579777919004391}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -6081,6 +6085,43 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &547502910684160239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499992859114416924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb86ba9d4c5126e48bfef9b0c9550e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 0}
+  _surface: {fileID: 2599893405032278625}
+  _selectSurface: {fileID: 0}
+  _movementProvider: {fileID: 0}
+  _tiebreakerScore: 0
+--- !u!114 &2935579777919004391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499992859114416924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bff16bb2b8cae9409e88ec4d3527c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactables:
+  - {fileID: 8635964168493437323}
+  - {fileID: 547502910684160239}
+  _data: {fileID: 0}
 --- !u!1 &6550182915029049875
 GameObject:
   m_ObjectHideFlags: 0
@@ -8697,8 +8738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactables:
-  - {fileID: 8457602139452935445}
   - {fileID: 7013637828036126425}
+  - {fileID: 8457602139452935445}
   _data: {fileID: 0}
 --- !u!1 &8390123184581381911
 GameObject:
@@ -8711,6 +8752,8 @@ GameObject:
   - component: {fileID: 9147819009674897944}
   - component: {fileID: 323762426148183321}
   - component: {fileID: 8113515396669024101}
+  - component: {fileID: 9155572763108438781}
+  - component: {fileID: 3935087761949750490}
   m_Layer: 0
   m_Name: PokeInteractable Unsave
   m_TagString: Untagged
@@ -8893,7 +8936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableView: {fileID: 323762426148183321}
+  _interactableView: {fileID: 3935087761949750490}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -8954,6 +8997,43 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9155572763108438781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390123184581381911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb86ba9d4c5126e48bfef9b0c9550e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 0}
+  _surface: {fileID: 1676760452908988278}
+  _selectSurface: {fileID: 0}
+  _movementProvider: {fileID: 0}
+  _tiebreakerScore: 0
+--- !u!114 &3935087761949750490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390123184581381911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bff16bb2b8cae9409e88ec4d3527c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactables:
+  - {fileID: 323762426148183321}
+  - {fileID: 9155572763108438781}
+  _data: {fileID: 0}
 --- !u!1 &8420119421555206839
 GameObject:
   m_ObjectHideFlags: 0
@@ -9167,7 +9247,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.57, z: 0.021}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 861353618137642623}
   - {fileID: 3070378201122253258}
@@ -9191,8 +9271,10 @@ GameObject:
   - component: {fileID: 6726725240918298327}
   - component: {fileID: 3972443619371264587}
   - component: {fileID: 5383481578316199951}
+  - component: {fileID: 8470719120587081855}
+  - component: {fileID: 6418547753038994032}
   m_Layer: 0
-  m_Name: PokeInteractable 2
+  m_Name: PokeInteractable Gravity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9373,7 +9455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableView: {fileID: 3972443619371264587}
+  _interactableView: {fileID: 6418547753038994032}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -9410,6 +9492,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2992106416365444723}
+        m_TargetAssemblyTypeName: FurnitureOption, Assembly-CSharp
+        m_MethodName: GravityOnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -9422,6 +9516,43 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8470719120587081855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072938800318549438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb86ba9d4c5126e48bfef9b0c9550e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 0}
+  _surface: {fileID: 1295125006743598226}
+  _selectSurface: {fileID: 0}
+  _movementProvider: {fileID: 0}
+  _tiebreakerScore: 0
+--- !u!114 &6418547753038994032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072938800318549438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bff16bb2b8cae9409e88ec4d3527c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactables:
+  - {fileID: 3972443619371264587}
+  - {fileID: 8470719120587081855}
+  _data: {fileID: 0}
 --- !u!1 &9118053850190430339
 GameObject:
   m_ObjectHideFlags: 0

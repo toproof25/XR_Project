@@ -25,7 +25,6 @@ public class passthroughOnOff : MonoBehaviour
         try
         {
             RoomModel = GameObject.FindObjectOfType<OVRSceneRoom>().gameObject;
-            Debug.Log("룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행룸실행");
             m_loadSpatialAnchor.LoadAnchorsBtUuid();
             //passthrough();
         }

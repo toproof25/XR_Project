@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class AnchorScript : MonoBehaviour
@@ -12,17 +13,26 @@ public class AnchorScript : MonoBehaviour
     public GameObject canvas;
     public TextMeshProUGUI uuidText;
     public TextMeshProUGUI savedStatusText;
-    public TMP_Text buttonText;
     public OVRSpatialAnchor spatialAnchor;
 
+    public TMP_Text buttonText;
+    public TMP_Text saveText;
+    public TMP_Text unSaveText;
 
-    public bool isAnchored = false;
-    public string uuid_string;
+
+    public bool isAnchored = true;
+    public string uuid_string = null;
+
+    private bool isRemove = false;
 
     private void Awake()
     {
         Debug.Log(gameObject.name + " -----------------------------------------------------------------------------");
         spatialAnchor = GetComponent<OVRSpatialAnchor>();
+
+        buttonText.color = Color.white;
+        saveText.color = Color.white;
+        unSaveText.color = Color.white;
     }
 
     private void Update()
@@ -38,37 +48,38 @@ public class AnchorScript : MonoBehaviour
         isAnchored = !isAnchored;
 
         // 앵커가 없으면 생성
-        if (isAnchored == false) {
-            //spatialAnchor.enabled = true;
-            spatialAnchor = gameObject.AddComponent<OVRSpatialAnchor>();
-
-            buttonText.text = "Lock";
+        if (isAnchored == true) {
+            if (spatialAnchor == null)
+                spatialAnchor = gameObject.AddComponent<OVRSpatialAnchor>();
+            else
+                spatialAnchor.enabled = true;
 
             StartCoroutine(AnchorCreated(spatialAnchor));
         }
         // 앵커가 있으면 제거
         else
         {
-            OnEraseButtonPressed();
-
-            buttonText.text = "Unlock";
-            uuidText.text = "no UUID";
-            savedStatusText.text = "No Anchor";
-
-            //spatialAnchor.enabled = false;
-            Destroy(spatialAnchor);
+            spatialAnchor.enabled = false;
+            OnEraseButtonPressed();  
         }
     }
 
 
 
-    // 앵커 삭제
+    // 앵커 삭제 (저장 제거)
     async void OnEraseButtonPressed()
     {
         var result = await spatialAnchor.EraseAnchorAsync();
         if (result.Success)
         {
-            Debug.Log($"Successfully erased anchor.");
+            buttonText.text = "Unlock";
+            uuidText.text = "no UUID";
+            savedStatusText.text = "No Anchor";
+
+            buttonText.color = Color.white;
+
+            DeleteUuidByValue(uuid_string);
+            Destroy(spatialAnchor);
         }
         else
         {
@@ -87,15 +98,21 @@ public class AnchorScript : MonoBehaviour
 
         Guid anchorGuid = workingAnchor.Uuid;
         spatialAnchor = workingAnchor;
-
-        uuidText.text = "UUID: " + anchorGuid.ToString();
+        uuid_string = anchorGuid.ToString();
+        uuidText.text = "UUID: " + uuid_string;
+        buttonText.text = "Lock";
         savedStatusText.text = "Not Saved";
+
+        buttonText.color = Color.blue;
     }
 
 
     // 앵커 세이브 함수
     public void SaveAnchor()
     {
+        if (uuid_string == null)
+            return;
+
         spatialAnchor.Save((savedAnchor, success) => {
             if (success)
             {
@@ -115,11 +132,13 @@ public class AnchorScript : MonoBehaviour
         }
 
         int playerNumUuids = PlayerPrefs.GetInt(NumUuidsPlayerPref);
-        uuid_string = uuid.ToString();
         PlayerPrefs.SetString("uuid" + playerNumUuids, uuid_string);
         PlayerPrefs.SetString(uuid_string, gameObject.name);
         PlayerPrefs.SetInt(NumUuidsPlayerPref, ++playerNumUuids);
         PlayerPrefs.Save();
+
+        saveText.color = Color.red;
+        unSaveText.color = Color.white;
     }
 
 
@@ -133,7 +152,6 @@ public class AnchorScript : MonoBehaviour
                 savedStatusText.text = "Not Saved";
             }
         });
-
 
         DeleteUuidByValue(uuid_string);
     }
@@ -154,6 +172,14 @@ public class AnchorScript : MonoBehaviour
 
                     Debug.Log($"Deleted key: {key}");
                     PlayerPrefs.Save();
+
+                    saveText.color = Color.white;
+                    unSaveText.color = Color.red;
+                    uuid_string = null;
+
+                    if (isRemove)
+                        Destroy(gameObject);
+
                     break;
                 }
             }
@@ -161,5 +187,13 @@ public class AnchorScript : MonoBehaviour
     }
 
 
+    // 오브젝트 삭제
+    public void DeleteObject() 
+    {
+        isRemove = true;
+
+        DeleteUuidByValue(uuid_string);
+        Destroy(spatialAnchor);
+    }
 
 }

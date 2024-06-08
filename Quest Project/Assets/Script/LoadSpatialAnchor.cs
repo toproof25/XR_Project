@@ -123,7 +123,6 @@ public class LoadSpatialAnchor : MonoBehaviour
             uuid.uuidText.text = "UUID: " + spatialAnchor.Uuid.ToString();
             uuid.savedStatusText.text = "Save";
             uuid.buttonText.text = "Lock";
-
             uuid.isAnchored = true;
         }
 
@@ -134,6 +133,7 @@ public class LoadSpatialAnchor : MonoBehaviour
 
     public void DeletePlayerPrefabs()
     {
+        Debug.Log("DeleteAll ---------- ");
         PlayerPrefs.DeleteAll();
     }
 }

@@ -18,47 +18,55 @@ public class FurnitureOption : MonoBehaviour
     public DistanceHandGrabInteractable distanceHandGrabInteractable;
     public TMP_Text buttonText;
 
-    private bool isGrab = true;
 
-    public float offset = 0.8f;
+    // Ï§ëÎ†• on off
+    private Rigidbody rigidbody;
+    private bool isGravity = false;
+    public TMP_Text gravityText;
+
+
+    //private Vector3 initialScale; // UIÏä§ÏºÄÏùº Í≥†Ï†ï
+
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+        gravityText.color = Color.white;
+    }
 
     void Start()
     {
-      
+        //initialScale = canvas.transform.localScale;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        //ƒµπˆΩ∫∞° «◊ªÛ ≥™∏¶ πŸ∂Û∫∏µµ∑œ
+        //Ï∫îÎ≤ÑÏä§Í∞Ä Ìï≠ÏÉÅ ÎÇòÎ•º Î∞îÎùºÎ≥¥ÎèÑÎ°ù / ÌÅ¨Í∏∞ Í≥†Ï†ï
         canvas.transform.LookAt(Camera.main.transform);
         canvas.transform.forward = Camera.main.transform.forward;
+        //canvas.transform.localScale = initialScale;
     }
 
-    // UI ƒ—∞Ì ≤Ù±‚
+    // UI ÏºúÍ≥† ÎÅÑÍ∏∞
     public void onCavas() => canvas.SetActive(true);
     public void offCavas() => canvas.SetActive(false);
 
-    // ø¿∫Í¡ß∆Æ ∞Ì¡§ or ∞Ì¡§ «ÿ¡¶ «‘ºˆ
-    public void LockButtonClick()
+
+    public void GravityOnOff()
     {
-        if (isGrab)
+        if (isGravity)
         {
-            isGrab = false;
-            buttonText.text = "Lock";
+            isGravity = false;
+            rigidbody.isKinematic = true;
+            gravityText.color = Color.white;
         }
-        else { 
-            isGrab = true;
-            buttonText.text = "UnLock";
+        else
+        {
+            isGravity = true;
+            rigidbody.isKinematic = false;
+            gravityText.color = Color.blue;
         }
 
-        grabInteractable.enabled = isGrab;
-        handGrabInteractable.enabled = isGrab;
-
-        distanceGrabInteractable.enabled = isGrab;
-        distanceHandGrabInteractable.enabled = isGrab;
+        
     }
-
-    // ø¿∫Í¡ß∆Æ ªË¡¶
-    public void DeleteObject() => Destroy(gameObject);
-
 }

@@ -80,6 +80,9 @@ public class SimplePrefabSpawner : MonoBehaviour
                 GameObject instantiatedPrefab = Instantiate(prefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                 instantiatedPrefab.transform.localScale = currentPreview.transform.localScale;
                 instantiatedPrefab.transform.rotation = currentPreview.transform.rotation;
+
+                OVRSpatialAnchor spatialAnchor = instantiatedPrefab.GetComponent<OVRSpatialAnchor>();
+                Destroy(spatialAnchor);
                 cancel();
             }
         }
