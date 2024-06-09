@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class VoiceHandle : MonoBehaviour
 {
+    private ControllerButtonExp controllerButtonExp;
+
     public SetSpawnPrefab panelWithManipulators;
     public UIPageControll uiPageControll;
 
@@ -16,6 +18,11 @@ public class VoiceHandle : MonoBehaviour
     public List<string> prefabs_name = new List<string>(); // 프리팹들 이름
     public List<GameObject> prefabs_model = new List<GameObject>(); // 프리팹들 오브젝트
 
+
+    private void Start()
+    {
+        controllerButtonExp = FindObjectOfType<ControllerButtonExp>();
+    }
 
     public void OpenTheUI(string[] values)
     {
@@ -79,4 +86,11 @@ public class VoiceHandle : MonoBehaviour
     }
 
 
+    public void OpenTheVoiceUI(bool active)
+    {
+        if (active)
+            controllerButtonExp.VoiceExp();
+        else
+            controllerButtonExp.SetAllUI(true);
+    }
 }

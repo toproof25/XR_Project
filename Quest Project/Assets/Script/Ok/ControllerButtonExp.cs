@@ -10,9 +10,9 @@ public class ControllerButtonExp : MonoBehaviour
     public GameObject LeftCanvas;
 
     public GameObject voice;
+    public GameObject voiceBird;
     public GameObject leftJoystick;
     public GameObject menu;
-
 
 
     public GameObject RightCanvas;
@@ -36,6 +36,7 @@ public class ControllerButtonExp : MonoBehaviour
         SetVoiceUI(active);
         SetLeftJoystickUI(active);
         SetMenuUI(active);
+        SetVoiceBirdUI(active);
     }
 
 
@@ -55,7 +56,7 @@ public class ControllerButtonExp : MonoBehaviour
     public void SetSelectUI(bool active) => select.SetActive(active);
     public void SetGrabUI(bool active) => grab.SetActive(active);
     public void SetRaybUI(bool active) => ray.SetActive(active);
-
+    public void SetVoiceBirdUI(bool active) => voiceBird.SetActive(active);
     public void OnOffUI()
     {
         if (isAllUI)
@@ -76,9 +77,18 @@ public class ControllerButtonExp : MonoBehaviour
         SetSelectUI(active);
         SetGrabUI(active);
         SetRaybUI(active);
+        SetVoiceBirdUI(active);
     }
 
-
+    public void VoiceExp()
+    {
+        if (controllerMapper.controllerMode)
+        {
+            SetLeftCanvasUI(false);
+            SetVoiceUI(true);
+            SetVoiceBirdUI(true);
+        }
+    }
 
     public void GrabExp()
     {
