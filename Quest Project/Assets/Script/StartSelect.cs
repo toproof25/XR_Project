@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class StartSelect : MonoBehaviour
 {
-    public Button button1;
-    public Button button2;
-
-    void Start()
+    public void LoadScene0()
     {
-        button1.onClick.AddListener(() => LoadScene(0));
-        button2.onClick.AddListener(() => LoadScene(1));
+        SceneManager.LoadScene(0);
     }
 
-    void LoadScene(int sceneNum)
+    public void LoadScene1()
     {
-        SceneManager.LoadScene(sceneNum);
+        SceneManager.LoadScene(1);
     }
 }
