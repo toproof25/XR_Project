@@ -11,9 +11,6 @@ public class ControllerButtonsMapper : MonoBehaviour
     public passthroughOnOff passthroughOnOff;
     public GameObject PalmMenu;
 
-    public GameObject VoiceBird;
-    private Animator voiceBird_animator;
-
     public GameObject VoicePaner;
     public GameObject mike_on;
     public GameObject mike_off;
@@ -27,6 +24,7 @@ public class ControllerButtonsMapper : MonoBehaviour
     private void Start()
     {
         isMike = false;
+        SetVoiceBirdPosition();
     }
 
     private void Update()
@@ -47,19 +45,19 @@ public class ControllerButtonsMapper : MonoBehaviour
         {
             if (OVRInput.GetDown(OVRInput.Button.One))
             {
-                // A버튼 (선택)
+                // A버튼 (선택 다른 컴포넌트에서 사용)
             }
             else if (OVRInput.GetDown(OVRInput.Button.Two))
             {
                 // B버튼
-                if (!panelWithManipulators.gameObject.activeInHierarchy)
+                if (panelWithManipulators.gameObject.activeInHierarchy)
                     panelWithManipulators.CancelToggle();
                 simplePrefabSpawner.cancel();
             }
             else if (OVRInput.GetDown(OVRInput.Button.Three))
             {
-                // X버튼 메뉴로 전환
-                //PassthroughOnOff();
+                // X버튼
+                SetVoiceBirdPosition();
             }
             else if (OVRInput.GetUp(OVRInput.Button.Four))
             {
@@ -81,14 +79,19 @@ public class ControllerButtonsMapper : MonoBehaviour
         VoicePaner.SetActive(active);
     }
 
+
+    public void SetVoiceBirdPosition()
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraPosition = Camera.main.transform.position;
+        VoicePaner.transform.position = cameraPosition + cameraForward * 0.5f;
+        VoicePaner.transform.LookAt(Camera.main.transform);
+    }
+
     public void Voice()
     {
         if (!isMike)
         {
-            VoicePaner.transform.position = Camera.main.transform.position + Vector3.forward * 0.5f;
-            VoicePaner.transform.LookAt(Camera.main.transform);
-            VoicePaner.transform.forward = Camera.main.transform.forward;
-
             mike_on.SetActive(true);
             mike_off.SetActive(false);
 
@@ -103,7 +106,7 @@ public class ControllerButtonsMapper : MonoBehaviour
 
             isMike = false;
             voiceExperience.Deactivate();
-            Debug.Log("음소소소소소소솟거");
+            Debug.Log("음소거");
         }
     }
 

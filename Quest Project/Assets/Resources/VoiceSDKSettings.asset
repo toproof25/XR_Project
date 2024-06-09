@@ -19,9 +19,9 @@ MonoBehaviour:
     lang: en
     isPrivate: 1
     createdAt: 2024-06-08T19:46:41-0700
-    trainingStatus: 3
-    lastTrainDuration: 79
-    lastTrainedAt: 2024-06-08T21:16:17-0700
+    trainingStatus: 1
+    lastTrainDuration: 58
+    lastTrainedAt: 2024-06-08T21:18:01-0700
     nextTrainAt: 2024-06-08T21:17:03-0700
     intents:
     - id: 1214700272853121
@@ -61,6 +61,15 @@ MonoBehaviour:
       - keyword: dresser
         synonyms:
         - dresser
+      - keyword: flower
+        synonyms:
+        - flower
+      - keyword: lamp
+        synonyms:
+        - lamp
+      - keyword: microwave oven
+        synonyms:
+        - microwave oven
       - keyword: table
         synonyms:
         - table
@@ -627,7 +636,7 @@ MonoBehaviour:
   - Oculus.Voice.Demo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - Meta.WitAi.Samples, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   relaxedResolution: 0
-  _lastRefreshSeconds: 1717906636.0100849
+  _lastRefreshSeconds: 1717933631.6327627
 --- !u!114 &6745154403439045695
 MonoBehaviour:
   m_ObjectHideFlags: 0

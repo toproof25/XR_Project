@@ -121,7 +121,13 @@ public class SetSpawnPrefab : MonoBehaviour
         // 핸드트래킹 모드일 때 UI창 활성화 하면 앞에 스폰하도록
         if (active && !controllerMode)
         {
-            gameObject.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + Vector3.forward * 0.2f;
+            Vector3 cameraForward = Camera.main.transform.forward;
+            Vector3 cameraPosition = Camera.main.transform.position;
+            gameObject.transform.position = cameraPosition + cameraForward * 0.3f;
+            gameObject.transform.LookAt(Camera.main.transform);
+            gameObject.transform.forward = Camera.main.transform.forward;
+
+            //gameObject.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + Vector3.forward * 0.2f;
         }
   
     }

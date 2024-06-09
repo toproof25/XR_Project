@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIPageControll : MonoBehaviour
 {
@@ -25,4 +26,9 @@ public class UIPageControll : MonoBehaviour
         mainScreen.SetActive(true);
     }
 
+    public void LobbeyScene()
+    {
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("Lobby");
+    }
 }
