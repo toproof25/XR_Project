@@ -17,13 +17,8 @@ public class ControllerButtonsMapper : MonoBehaviour
 
     public AppVoiceExperience voiceExperience;
 
-
-
     private bool controllerMode = true;
 
-    
-
-    
     public bool isMike { set; get; }
 
     private void Start()
@@ -60,17 +55,27 @@ public class ControllerButtonsMapper : MonoBehaviour
             }
             else if (OVRInput.GetDown(OVRInput.Button.Three))
             {
-                PassthroughOnOff();
+                // X버튼
+                //PassthroughOnOff();
             }
             else if (OVRInput.GetUp(OVRInput.Button.Four))
             {
+                // Y버튼
                 Voice();
             }
             else if (OVRInput.GetDown(OVRInput.Button.Start))
             {
+                // = 버튼
                 ActiveUI();
             }
         }
+    }
+
+
+    public void SetVoicePaner()
+    {
+        bool active = !VoicePaner.gameObject.activeInHierarchy;
+        VoicePaner.SetActive(active);
     }
 
     public void Voice()
@@ -109,7 +114,7 @@ public class ControllerButtonsMapper : MonoBehaviour
     public void PassthroughOnOff()
     {
         // X버튼
-        bool active = !passthroughOnOff.gameObject.activeInHierarchy;
+        bool active = !passthroughOnOff.passthroughLayer.activeInHierarchy;
         passthroughOnOff.passthrough(active);
     }
 }

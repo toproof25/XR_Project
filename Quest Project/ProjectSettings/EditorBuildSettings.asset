@@ -6,20 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Don't touch/XR Project 2.unity
-    guid: d7919975e45941142a58595c45eea042
-  - enabled: 0
-    path: Assets/Scenes/XR Project.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/XR Projectmscopy.unity
-    guid: f8cebafa3e7d9a347bf20dab1cd278e4
-  - enabled: 0
-    path: Assets/Scenes/Don't touch/XR Project test.unity
-    guid: 39f671220b3bf4b47a012ccdb1059636
-  - enabled: 1
     path: Assets/Scenes/Don't touch/XR Project 1.unity
     guid: 24308af79b411ea44892d6718f24f33d
+  - enabled: 1
+    path: Assets/Scenes/Don't touch/XR Project 2.unity
+    guid: d7919975e45941142a58595c45eea042
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d0390e3f2b17e0d4aab3dbabec8d569b, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7aedc45a67bccc3478baa56cded2e672, type: 2}
