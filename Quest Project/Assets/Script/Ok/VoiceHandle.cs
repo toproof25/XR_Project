@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Oculus.Voice;
 using UnityEngine;
 
-public class ColorChanger2 : MonoBehaviour
+public class VoiceHandle : MonoBehaviour
 {
     public SetSpawnPrefab panelWithManipulators;
     public UIPageControll uiPageControll;
