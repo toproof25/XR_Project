@@ -20,8 +20,13 @@ public class SetSpawnPrefab : MonoBehaviour
 
     private SimplePrefabSpawner simplePrefabSpawner;
 
+<<<<<<< Updated upstream:Quest Project/Assets/Script/Ok/SetSpawnPrefab.cs
     public List<GameObject> prefabsBig = new List<GameObject>(); // 프리팹들
     public List<GameObject> prefabsEtc = new List<GameObject>(); // 프리팹들
+=======
+    public List<GameObject> prefabsBig = new List<GameObject>(); // 가구/설치 프리팹들
+    public List<GameObject> prefabsEtc = new List<GameObject>(); // 소품 프리팹들
+>>>>>>> Stashed changes:Quest Project/Assets/Script/SetSpawnPrefab.cs
 
     public List<Sprite> big_images = new List<Sprite>(); // 프리팹 이미지들
 
@@ -31,6 +36,13 @@ public class SetSpawnPrefab : MonoBehaviour
 
     void Start()
     {
+<<<<<<< Updated upstream:Quest Project/Assets/Script/Ok/SetSpawnPrefab.cs
+=======
+        gameObject.SetActive(false);
+        bigScrollCopyToggle.SetActive(false);
+        etcScrollCopyToggle.SetActive(false);
+
+>>>>>>> Stashed changes:Quest Project/Assets/Script/SetSpawnPrefab.cs
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
         toggles = new List<GameObject>();
 
