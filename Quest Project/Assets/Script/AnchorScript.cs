@@ -176,15 +176,14 @@ public class AnchorScript : MonoBehaviour
                     saveText.color = Color.white;
                     unSaveText.color = Color.red;
                     uuid_string = null;
-
-                    if (isRemove)
-                    {
-                        Destroy(spatialAnchor);
-                        Destroy(gameObject);
-                    }
-
                     break;
                 }
+            }
+
+            if (isRemove)
+            {
+                Destroy(spatialAnchor);
+                Destroy(gameObject);
             }
         }
         else

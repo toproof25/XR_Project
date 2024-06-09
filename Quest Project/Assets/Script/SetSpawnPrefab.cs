@@ -23,6 +23,7 @@ public class SetSpawnPrefab : MonoBehaviour
     public List<GameObject> prefabsBig = new List<GameObject>(); // 프리팹들
     public List<GameObject> prefabsEtc = new List<GameObject>(); // 프리팹들
 
+    public List<Sprite> big_images = new List<Sprite>(); // 프리팹 이미지들
 
     private List<GameObject> toggles; // 토글즈
 
@@ -43,6 +44,8 @@ public class SetSpawnPrefab : MonoBehaviour
         gameObject.SetActive(false);
         bigScrollCopyToggle.SetActive(false);
         etcScrollCopyToggle.SetActive(false);
+
+        CancelToggle();
     }
 
     private void Update()
@@ -58,16 +61,6 @@ public class SetSpawnPrefab : MonoBehaviour
             transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + new Vector3(0, 0.28f, 0);
             transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
         }
-        else
-        {
-            //Debug.Log("핸드모드 or 컨트롤러 이외");
-            //transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LHand) + new Vector3(0, 0.28f, 0);
-            //transform.LookAt(Camera.main.transform);
-            //transform.forward = Camera.main.transform.forward;
-
-            //transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LHand);
-        }
-
 
     }
 
@@ -85,10 +78,11 @@ public class SetSpawnPrefab : MonoBehaviour
 
             // TextMeshPro 컴포넌트 가져오기
             TMP_Text textMeshPro = tg.transform.Find("Content").Find("Text").GetComponent<TMP_Text>();
-
-            // 텍스트 설정
-            //Debug.Log(prefabs[index].name);
             textMeshPro.text = prefabs[index].name;
+
+            // TextMeshPro 컴포넌트 가져오기
+            Image tImage = tg.transform.Find("Content").Find("Background").GetComponent<Image>();
+            tImage.sprite = big_images[index];
 
             // Toggle 컴포넌트 가져오기
             Toggle toggleComponent = tg.GetComponent<Toggle>();
