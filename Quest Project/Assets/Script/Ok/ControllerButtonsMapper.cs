@@ -10,14 +10,17 @@ public class ControllerButtonsMapper : MonoBehaviour
     public SimplePrefabSpawner simplePrefabSpawner;
     public passthroughOnOff passthroughOnOff;
     public GameObject PalmMenu;
-    
+
+    public GameObject VoiceBird;
+    private Animator voiceBird_animator;
+
     public GameObject VoicePaner;
     public GameObject mike_on;
     public GameObject mike_off;
 
     public AppVoiceExperience voiceExperience;
 
-    private bool controllerMode = true;
+    public bool controllerMode = true;
 
     public bool isMike { set; get; }
 
@@ -55,7 +58,7 @@ public class ControllerButtonsMapper : MonoBehaviour
             }
             else if (OVRInput.GetDown(OVRInput.Button.Three))
             {
-                // X버튼
+                // X버튼 메뉴로 전환
                 //PassthroughOnOff();
             }
             else if (OVRInput.GetUp(OVRInput.Button.Four))

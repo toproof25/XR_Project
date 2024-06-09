@@ -45,7 +45,7 @@ public class SetSpawnPrefab : MonoBehaviour
         bigScrollCopyToggle.SetActive(false);
         etcScrollCopyToggle.SetActive(false);
 
-        CancelToggle();
+        //CancelToggle();
     }
 
     private void Update()

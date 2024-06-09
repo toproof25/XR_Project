@@ -3,6 +3,7 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SimplePrefabSpawner : MonoBehaviour
 {
@@ -15,12 +16,14 @@ public class SimplePrefabSpawner : MonoBehaviour
 
     private bool spawnMode = false;
 
-
     private float rotationSpeed = 100f;
     private float scaleSpeed = 0.5f;
     private float minScale = 0.3f;
     private float maxScale = 2f;
 
+    [Header("Spawn Mode Event")]
+    public UnityEvent onSpawnModeEnabled;
+    public UnityEvent onSpawnModeDisabled;
 
     private void Start()
     {
@@ -116,7 +119,7 @@ public class SimplePrefabSpawner : MonoBehaviour
             return;
         }
 
-
+        SetSpawnMode(true);
     }
 
     public void cancel()
@@ -124,6 +127,22 @@ public class SimplePrefabSpawner : MonoBehaviour
         spawnMode = false;
         prefab = null;
         currentPreview.SetActive(false);
+        SetSpawnMode(false);
+    }
+
+
+    // 이벤트 연결
+    private void SetSpawnMode(bool enabled)
+    {
+        spawnMode = enabled;
+        if (spawnMode)
+        {
+            onSpawnModeEnabled?.Invoke();
+        }
+        else
+        {
+            onSpawnModeDisabled?.Invoke();
+        }
     }
 }
 
