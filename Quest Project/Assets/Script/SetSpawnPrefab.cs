@@ -13,9 +13,6 @@ public class SetSpawnPrefab : MonoBehaviour
     public GameObject bigScrollCopyParent;
     public GameObject bigScrollCopyToggle;
 
-    public GameObject smallScrollCopyParent;
-    public GameObject smallScrollCopyToggle;
-
     public GameObject etcScrollCopyParent;
     public GameObject etcScrollCopyToggle;
 
@@ -24,7 +21,6 @@ public class SetSpawnPrefab : MonoBehaviour
     private SimplePrefabSpawner simplePrefabSpawner;
 
     public List<GameObject> prefabsBig = new List<GameObject>(); // 프리팹들
-    public List<GameObject> prefabsSmall = new List<GameObject>(); // 프리팹들
     public List<GameObject> prefabsEtc = new List<GameObject>(); // 프리팹들
 
 
@@ -36,7 +32,6 @@ public class SetSpawnPrefab : MonoBehaviour
     {
         gameObject.SetActive(false);
         bigScrollCopyToggle.SetActive(false);
-        smallScrollCopyToggle.SetActive(false);
         etcScrollCopyToggle.SetActive(false);
 
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
@@ -47,7 +42,6 @@ public class SetSpawnPrefab : MonoBehaviour
         Debug.Log("--------------------------------------");
 
         SpawnToggle(prefabsBig, bigScrollCopyToggle, bigScrollCopyParent);
-        SpawnToggle(prefabsSmall, smallScrollCopyToggle, smallScrollCopyParent);
         SpawnToggle(prefabsEtc, etcScrollCopyToggle, etcScrollCopyParent);
     }
 
