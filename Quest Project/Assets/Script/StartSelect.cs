@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class StartSelect : MonoBehaviour
 {
-    public void LoadSceneXR()
+    public void LoadScene0()
     {
-        SceneManager.LoadScene("XR Project final");
+        SceneManager.LoadScene(0);
     }
 
-    public void LoadSceneVR()
+    public void LoadScene1()
     {
         SceneManager.LoadScene(1);
     }
