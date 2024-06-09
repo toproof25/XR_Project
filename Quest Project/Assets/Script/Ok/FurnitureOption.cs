@@ -11,8 +11,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FurnitureOption : MonoBehaviour
 {
-    private ControllerButtonExp controllerButtonExp;
-
     public GameObject canvas;
     public GrabInteractable grabInteractable;
     public HandGrabInteractable handGrabInteractable;
@@ -38,7 +36,7 @@ public class FurnitureOption : MonoBehaviour
 
     void Start()
     {
-        controllerButtonExp = FindObjectOfType<ControllerButtonExp>();
+        //initialScale = canvas.transform.localScale;
     }
 
     private void LateUpdate()
@@ -68,23 +66,7 @@ public class FurnitureOption : MonoBehaviour
             rigidbody.isKinematic = false;
             gravityText.color = Color.blue;
         }
+
+        
     }
-
-
-    public void OpenTheRayExp(bool active) 
-    { 
-        if (active)
-            controllerButtonExp.RayExp();
-        else
-            controllerButtonExp.SetAllUI(true);
-    }
-    public void OpenTheGrabExp(bool active)
-    {
-        if (active)
-            controllerButtonExp.GrabExp();
-        else
-            controllerButtonExp.SetAllUI(true);
-    }
-
-
 }
