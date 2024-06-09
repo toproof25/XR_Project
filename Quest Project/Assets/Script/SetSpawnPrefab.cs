@@ -30,10 +30,6 @@ public class SetSpawnPrefab : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
-        bigScrollCopyToggle.SetActive(false);
-        etcScrollCopyToggle.SetActive(false);
-
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
         toggles = new List<GameObject>();
 
@@ -43,6 +39,10 @@ public class SetSpawnPrefab : MonoBehaviour
 
         SpawnToggle(prefabsBig, bigScrollCopyToggle, bigScrollCopyParent);
         SpawnToggle(prefabsEtc, etcScrollCopyToggle, etcScrollCopyParent);
+
+        gameObject.SetActive(false);
+        bigScrollCopyToggle.SetActive(false);
+        etcScrollCopyToggle.SetActive(false);
     }
 
     private void Update()
@@ -106,7 +106,8 @@ public class SetSpawnPrefab : MonoBehaviour
 
     public void SpawnIndex(GameObject furniture)
     {
-        simplePrefabSpawner.setPrefab(furniture);
+        if (gameObject.activeInHierarchy)
+            simplePrefabSpawner.setPrefab(furniture);
     }
 
     public void CancelToggle()
