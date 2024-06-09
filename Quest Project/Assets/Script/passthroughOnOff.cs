@@ -8,7 +8,6 @@ public class passthroughOnOff : MonoBehaviour
 {
     public GameObject passthroughLayer;
     public OVRCameraRig ovrCameraRig;
-    private bool onOff = true;
 
     private GameObject RoomModel;
 
@@ -35,11 +34,9 @@ public class passthroughOnOff : MonoBehaviour
         }
     }
 
-    public void passthrough()
+    public void passthrough(bool onoff)
     {
-        onOff = !onOff;
-
-        if (onOff)
+        if (onoff)
         {
             passthroughLayer.SetActive(true); // 패스스루 레이어 활성화
             ToggleMeshRenderersInChildren(false);    

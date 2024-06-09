@@ -24,4 +24,5 @@ public class UIPageControll : MonoBehaviour
         optionScreen.SetActive(false);
         mainScreen.SetActive(true);
     }
+
 }

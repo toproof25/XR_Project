@@ -178,11 +178,19 @@ public class AnchorScript : MonoBehaviour
                     uuid_string = null;
 
                     if (isRemove)
+                    {
+                        Destroy(spatialAnchor);
                         Destroy(gameObject);
+                    }
 
                     break;
                 }
             }
+        }
+        else
+        {
+            Destroy(spatialAnchor);
+            Destroy(gameObject);
         }
     }
 
@@ -191,9 +199,7 @@ public class AnchorScript : MonoBehaviour
     public void DeleteObject() 
     {
         isRemove = true;
-
         DeleteUuidByValue(uuid_string);
-        Destroy(spatialAnchor);
     }
 
 }

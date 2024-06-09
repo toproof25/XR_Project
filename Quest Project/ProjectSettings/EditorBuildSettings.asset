@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/Scenes/Don't touch/XR Project 2.unity
+    guid: d7919975e45941142a58595c45eea042
+  - enabled: 0
     path: Assets/Scenes/XR Project.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0

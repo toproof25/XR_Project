@@ -125,16 +125,16 @@ public class SetSpawnPrefab : MonoBehaviour
     }
 
 
-    public void SetActiveUI()
+    public void SetActiveUI(bool active)
     {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
+        gameObject.SetActive(active);
 
         // 핸드트래킹 모드일 때 UI창 활성화 하면 앞에 스폰하도록
-        if (gameObject.activeInHierarchy && !controllerMode)
+        if (active && !controllerMode)
         {
             gameObject.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + Vector3.forward * 0.2f;
         }
-        
+  
     }
 
 }

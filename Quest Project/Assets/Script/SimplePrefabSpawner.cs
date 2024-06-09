@@ -78,6 +78,7 @@ public class SimplePrefabSpawner : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.One))
             {
                 GameObject instantiatedPrefab = Instantiate(prefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                instantiatedPrefab.name = prefab.name;
                 instantiatedPrefab.transform.localScale = currentPreview.transform.localScale;
                 instantiatedPrefab.transform.rotation = currentPreview.transform.rotation;
 
