@@ -29,6 +29,9 @@ public class SetSpawnPrefab : MonoBehaviour
 
     private bool controllerMode = true;
 
+    public Transform camera;
+
+
     void Start()
     {
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
@@ -58,8 +61,12 @@ public class SetSpawnPrefab : MonoBehaviour
         // 컨트롤러 사용중이면
         if (controllerMode)
         {
-            transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + new Vector3(0, 0.28f, 0);
-            transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
+            Vector3 controllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
+            Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
+
+            // 컨트롤러의 위치에 오브젝트의 위치를 더하고 높이를 조절하여 UI의 위치 설정
+            transform.position = controllerPosition + new Vector3(0, 0.28f, 0) + camera.position;
+            transform.rotation = controllerRotation * camera.rotation;
         }
 
     }
