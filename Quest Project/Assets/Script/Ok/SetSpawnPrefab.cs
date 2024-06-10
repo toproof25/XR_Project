@@ -24,6 +24,8 @@ public class SetSpawnPrefab : MonoBehaviour
     public List<GameObject> prefabsEtc = new List<GameObject>(); // 프리팹들
 
     public List<Sprite> big_images = new List<Sprite>(); // 프리팹 이미지들
+    public List<Sprite> etc_images = new List<Sprite>(); // 프리팹 이미지들
+
 
     private List<GameObject> toggles; // 토글즈
 
@@ -41,8 +43,8 @@ public class SetSpawnPrefab : MonoBehaviour
         Debug.Log("로드 완료");
         Debug.Log("--------------------------------------");
 
-        SpawnToggle(prefabsBig, bigScrollCopyToggle, bigScrollCopyParent);
-        SpawnToggle(prefabsEtc, etcScrollCopyToggle, etcScrollCopyParent);
+        SpawnToggle(prefabsBig, big_images, bigScrollCopyToggle, bigScrollCopyParent);
+        SpawnToggle(prefabsEtc, etc_images, etcScrollCopyToggle, etcScrollCopyParent);
 
         gameObject.SetActive(false);
         bigScrollCopyToggle.SetActive(false);
@@ -71,7 +73,7 @@ public class SetSpawnPrefab : MonoBehaviour
 
     }
 
-    private void SpawnToggle(List<GameObject> prefabs, GameObject copyToggle, GameObject copyParent)
+    private void SpawnToggle(List<GameObject> prefabs, List<Sprite> images,GameObject copyToggle, GameObject copyParent)
     {
 
         for (int i = 0; i < prefabs.Count; i++)
@@ -89,7 +91,7 @@ public class SetSpawnPrefab : MonoBehaviour
 
             // TextMeshPro 컴포넌트 가져오기
             Image tImage = tg.transform.Find("Content").Find("Background").GetComponent<Image>();
-            tImage.sprite = big_images[index];
+            tImage.sprite = images[index];
 
             // Toggle 컴포넌트 가져오기
             Toggle toggleComponent = tg.GetComponent<Toggle>();

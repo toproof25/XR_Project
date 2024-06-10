@@ -8,11 +8,11 @@ public class StartSelect : MonoBehaviour
 {
     public void LoadSceneXR()
     {
-        SceneManager.LoadScene("XR Project final");
+        SceneManager.LoadScene(1);
     }
 
     public void LoadSceneVR()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
