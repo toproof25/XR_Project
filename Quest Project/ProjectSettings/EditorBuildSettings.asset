@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Don't touch/XR Project final.unity
     guid: d7919975e45941142a58595c45eea042
   - enabled: 1
-    path: Assets/Scenes/XR Project final vr.unity
-    guid: 957034b0e30002d48b3e70583ad149cd
+    path: Assets/Scenes/Don't touch/XR Project final vr.unity
+    guid: a090c540ccad44e4bac9cf043898d21d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d0390e3f2b17e0d4aab3dbabec8d569b, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7aedc45a67bccc3478baa56cded2e672, type: 2}

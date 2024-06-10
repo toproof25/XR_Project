@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,17 @@ public class HitBall : MonoBehaviour
         {
             Rigidbody rigid = other.gameObject.GetComponent<Rigidbody>();
             Debug.Log($"{rigid.velocity} : 현재 속도");
-            
-            animator.SetTrigger("hit");
+
+            float x = rigid.velocity.x;
+            float y = rigid.velocity.y;
+            float z = rigid.velocity.z;
+
+            float sum = Math.Abs(x) + Math.Abs(y) + Math.Abs(z);
+
+            if (sum >= 10f)
+                animator.SetTrigger("hit");
+            else
+                animator.SetTrigger("dodge");
             Destroy(other.gameObject);
         }
     }

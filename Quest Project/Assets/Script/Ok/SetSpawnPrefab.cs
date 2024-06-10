@@ -35,6 +35,7 @@ public class SetSpawnPrefab : MonoBehaviour
 
     public Transform camera;
 
+    public GameObject LeftController;
 
     void Start()
     {
@@ -67,12 +68,26 @@ public class SetSpawnPrefab : MonoBehaviour
         // 컨트롤러 사용중이면
         if (controllerMode)
         {
+            /*
             Vector3 controllerPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
             Quaternion controllerRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
 
             // 컨트롤러의 위치에 오브젝트의 위치를 더하고 높이를 조절하여 UI의 위치 설정
-            transform.position = controllerPosition + new Vector3(0, 0.28f, 0) + camera.position;
-            transform.rotation = controllerRotation * camera.rotation;
+            //transform.position = controllerPosition + new Vector3(0, 0.28f, 0) + camera.position;
+            //transform.rotation = controllerRotation * camera.rotation;
+
+            transform.position = controllerPosition + new Vector3(0, 0.28f, 0);
+            transform.rotation = controllerRotation;
+            */
+
+            Vector3 controllerPosition = LeftController.transform.position;
+            Quaternion controllerRotation = LeftController.transform.rotation;
+
+            transform.position = controllerPosition + new Vector3(0, 0.28f, 0);
+            transform.rotation = controllerRotation;
+
+
+
         }
 
     }
@@ -187,6 +202,8 @@ public class SetSpawnPrefab : MonoBehaviour
     {
         gameObject.SetActive(active);
 
+
+
         // 핸드트래킹 모드일 때 UI창 활성화 하면 앞에 스폰하도록
         if (active && !controllerMode)
         {
@@ -198,7 +215,14 @@ public class SetSpawnPrefab : MonoBehaviour
 
             //gameObject.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch) + Vector3.forward * 0.2f;
         }
-  
+        else if(active)
+        {
+            Vector3 cameraForward = Camera.main.transform.forward;
+            Vector3 cameraPosition = Camera.main.transform.position;
+            gameObject.transform.position = cameraPosition + cameraForward * 0.5f;
+            gameObject.transform.LookAt(Camera.main.transform);
+            gameObject.transform.forward = Camera.main.transform.forward;
+        }
     }
 
 }
