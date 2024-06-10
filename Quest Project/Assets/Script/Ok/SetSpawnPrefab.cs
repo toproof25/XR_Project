@@ -29,6 +29,8 @@ public class SetSpawnPrefab : MonoBehaviour
 
     private List<GameObject> toggles; // 토글즈
 
+    private List<GameObject> hand_prefabs; // 토글즈
+
     private bool controllerMode = true;
 
     public Transform camera;
@@ -38,13 +40,15 @@ public class SetSpawnPrefab : MonoBehaviour
     {
         simplePrefabSpawner = simplePrefabSpawnerObject.GetComponent<SimplePrefabSpawner>();
         toggles = new List<GameObject>();
+        hand_prefabs = new List<GameObject>();
+
 
         Debug.Log("--------------------------------------");
         Debug.Log("로드 완료");
         Debug.Log("--------------------------------------");
 
         SpawnToggle(prefabsBig, big_images, bigScrollCopyToggle, bigScrollCopyParent);
-        SpawnToggle(prefabsEtc, etc_images, etcScrollCopyToggle, etcScrollCopyParent);
+        SpawnButton(prefabsEtc, etc_images, etcScrollCopyToggle, etcScrollCopyParent);
 
         gameObject.SetActive(false);
         bigScrollCopyToggle.SetActive(false);
@@ -106,6 +110,62 @@ public class SetSpawnPrefab : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    private void SpawnButton(List<GameObject> prefabs, List<Sprite> images, GameObject copyToggle, GameObject copyParent)
+    {
+
+        for (int i = 0; i < prefabs.Count; i++)
+        {
+            int index = i;
+
+            if (prefabs[index] == null)
+                continue;
+
+            GameObject bt = Instantiate(copyToggle, copyParent.transform);
+
+            // TextMeshPro 컴포넌트 가져오기
+            TMP_Text textMeshPro = bt.transform.Find("Content").Find("Text").GetComponent<TMP_Text>();
+            textMeshPro.text = prefabs[index].name;
+
+            // TextMeshPro 컴포넌트 가져오기
+            Image btImage = bt.transform.Find("Content").Find("Background").GetComponent<Image>();
+            btImage.sprite = images[index];
+
+            // Toggle 컴포넌트 가져오기
+            Button toggleComponent = bt.GetComponent<Button>();
+
+            // OnValueChanged 이벤트에 SetSpawnPrefab 함수 연결
+            toggleComponent.onClick.AddListener(delegate { SpawnPrefab(prefabs[index]); });
+
+            bt.SetActive(true);
+        }
+
+        gameObject.SetActive(true);
+    }
+
+
+    public void clearHandPrefabs()
+    {
+        foreach(GameObject pf in hand_prefabs) {
+            Debug.Log($"{pf.name} : 사ㄱ제");
+            Destroy(pf);
+        }
+
+        hand_prefabs.Clear();
+    }
+
+
+    public void SpawnPrefab(GameObject prefab)
+    {
+        GameObject instantiatedPrefab = Instantiate(prefab);
+        instantiatedPrefab.name = prefab.name;
+
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraPosition = Camera.main.transform.position;
+        instantiatedPrefab.transform.position = cameraPosition + cameraForward * 0.2f;
+
+        hand_prefabs.Add(instantiatedPrefab);
+        //prefab.transform.LookAt(Camera.main.transform);
+    }
 
     public void SpawnIndex(GameObject furniture)
     {
