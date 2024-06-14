@@ -74,4 +74,8 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 <br/>
 
 
+### 프로젝트 참고 자료
+- [Meta SDK 공식 문서](https://developer.oculus.com/documentation/unity/bb-overview/)
+- [Black Whale Studio](https://www.youtube.com/@blackwhalestudio)
+
 
