@@ -24,7 +24,7 @@ demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 - 음성 명령(wit.ai)
 - 공간 저장 및 로드
 
-![image](https://github.com/toproof25/XR_Project/assets/41888060/c26510e4-953c-4f19-a574-a72bc36ee66b)  
+![XR](https://github.com/toproof25/XR_Project/assets/41888060/9da02f0e-c5a7-4395-ae65-55f708efea39)
 
 <br/>
 <br/>
@@ -40,7 +40,7 @@ demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 - Controller A key(배치) / B key(취소)
 - Hand Tracking 왼손을 쫙 피면 배치 모드 취소(모션 인식)
 
-![image](https://github.com/toproof25/XR_Project/assets/41888060/fd68a932-e24d-4e03-a0a1-ea12b3727a6b)  
+![배치 - Clipchamp로 제작](https://github.com/toproof25/XR_Project/assets/41888060/6eed0844-4258-479d-a342-8b477b025c1b)
 
 <br/>
 <br/>
@@ -49,8 +49,6 @@ demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 
 - Grab, Distance Grab Interactable, Two Hand Grab 등 Meta SDK 컴포넌트를 이용하여 이동, 회전, 크기를 조절
 
-![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
-![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
 ![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
 
 
@@ -67,7 +65,8 @@ demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
   - Passthrough on / off
   - Create box / toycar / lamp / camera / microwave oven / flower / table / dresser / chair
 
-![image](https://github.com/toproof25/XR_Project/assets/41888060/95029cf9-1c5f-4ac2-9164-aebe7bee8fbd)  
+![음성인식 - Clipchamp로 제작](https://github.com/toproof25/XR_Project/assets/41888060/8fe67a5f-ed31-45d2-8c01-d9f849011208)
+
 
 <br/>
 <br/>
