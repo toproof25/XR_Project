@@ -32,7 +32,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 ### 오브젝트 배치
 
 #### UI에서 오브젝트 선택
-![image](https://github.com/toproof25/XR_Project/assets/41888060/79843ccc-6ef0-485c-9681-a2c738ffc536)  
+<img src="https://github.com/toproof25/XR_Project/assets/41888060/79843ccc-6ef0-485c-9681-a2c738ffc536"  width="426" height="240"/>
 
 #### 선택 후 배치
 
