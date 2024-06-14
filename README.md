@@ -78,4 +78,9 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 - [Meta SDK 공식 문서](https://developer.oculus.com/documentation/unity/bb-overview/)
 - [Black Whale Studio](https://www.youtube.com/@blackwhalestudio)
 
+### 사용한 애셋
+- [Sparrow - Quirky Series: Unity Asset Store](https://assetstore.unity.com/packages/3d/characters/animals/sparrow-quirky-series-247228)
+- [Furniture FREE: Unity Asset Store](https://assetstore.unity.com/packages/3d/props/furniture/furniture-free-260522)
+- [Meta XR All-in-One SDK: Unity Asset Store](https://assetstore.unity.com/packages/tools/integration/meta-xr-all-in-one-sdk-269657)
+
 
