@@ -2,7 +2,7 @@
 
 ### Meta SDK Team (Student Ddevelopment Know-nothing)
 
-demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
+Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 ----
 
 ### 로비
