@@ -5,7 +5,7 @@
 Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 ----
 
-### 로비
+## 로비
 
 - 컨트롤러 텔레포트 이동
 - XR, VR씬으로 이동
@@ -15,7 +15,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 <br/>
 <br/>
 
-### XR씬
+## XR씬
 
 - Passthrough
 - Controller
@@ -29,7 +29,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 <br/>
 <br/>
 
-### 오브젝트 배치
+## 오브젝트 배치
 
 #### UI에서 오브젝트 선택
 <img src="https://github.com/toproof25/XR_Project/assets/41888060/79843ccc-6ef0-485c-9681-a2c738ffc536"  width="426" height="240"/>
@@ -55,7 +55,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 <br/>
 <br/>
 
-### 음성 명령
+## 음성 명령
 
 - [Wit.ai](https://wit.ai/) 음성 인식
 - 마이크 활성화 후 음성 명령 내리기
