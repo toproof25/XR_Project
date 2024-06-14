@@ -2,7 +2,7 @@
 
 ### Meta SDK Team (Student Ddevelopment Know-nothing)
 
-demo video : (youtube)[https://www.youtube.com/watch?v=roQkJPKeeOI]
+demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 ----
 
 ### 로비
@@ -49,7 +49,10 @@ demo video : (youtube)[https://www.youtube.com/watch?v=roQkJPKeeOI]
 
 - Grab, Distance Grab Interactable, Two Hand Grab 등 Meta SDK 컴포넌트를 이용하여 이동, 회전, 크기를 조절
 
-![image](https://github.com/toproof25/XR_Project/assets/41888060/71ad8814-062f-4898-b24b-d8690479fd9a)  
+![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
+![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
+![편집](https://github.com/toproof25/XR_Project/assets/41888060/f013c684-ca0d-42c8-a60c-1b2ef2ff4fc2)
+
 
 <br/>
 <br/>
