@@ -10,7 +10,7 @@ demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 - 컨트롤러 텔레포트 이동
 - XR, VR씬으로 이동
 
-![image width=426 height=240](https://github.com/toproof25/XR_Project/assets/41888060/9e05783f-f7b7-4d40-916a-d4f36f044233)  
+![image width="426" height="240"](https://github.com/toproof25/XR_Project/assets/41888060/9e05783f-f7b7-4d40-916a-d4f36f044233)  
 
 <br/>
 <br/>
