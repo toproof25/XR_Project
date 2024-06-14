@@ -48,7 +48,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 <br/>
 <br/>
 
-## 오브젝트 배치
+## 오브젝트 배치 및 편집
 
 #### UI에서 오브젝트 선택
 <img src="https://github.com/toproof25/XR_Project/assets/41888060/79843ccc-6ef0-485c-9681-a2c738ffc536"  width="426" height="240"/>
@@ -61,10 +61,7 @@ Demo video : [youtube](https://www.youtube.com/watch?v=roQkJPKeeOI)
 
 ![배치 - Clipchamp로 제작](https://github.com/toproof25/XR_Project/assets/41888060/6eed0844-4258-479d-a342-8b477b025c1b)
 
-<br/>
-<br/>
-
-### 오브젝트 편집
+#### 오브젝트 편집
 
 - Grab, Distance Grab Interactable, Two Hand Grab 등 Meta SDK 컴포넌트를 이용하여 이동, 회전, 크기를 조절
 
